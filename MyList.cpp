@@ -86,3 +86,15 @@ int MyList::getNodeData(int x){
     }
     cout<<"Posicion fuera de la lista"<<endl;
 }
+
+void MyList::changeData(int index, int value) {
+    current=head;
+    for (int i=0; i!=index;i++){
+        current->next==current;
+    }
+    current->data=value;
+}
+
+
+
+

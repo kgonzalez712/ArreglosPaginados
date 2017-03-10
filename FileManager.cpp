@@ -11,7 +11,7 @@ FileManager::FileManager(string txt) {
         int array[lista.getLenght()];
         FileManager::makeArray(array,lista);
         FileManager::GetUserInput(array,lista.getLenght());
-        FileManager::makeSortedList(array);
+        FileManager::makeSortedList(array,lista.getLenght());
         listaOrd.PrintList();
     } else cout << "Unable to open file" << endl;
 }
@@ -40,8 +40,8 @@ void FileManager::makeArray(int *a, MyList ml) {
         a[i]= lista.getNodeData(i);
     }
 }
-void FileManager::makeSortedList(int *a) {
-    for (int i=0;i<5;i++){
+void FileManager::makeSortedList(int *a, int length) {
+    for (int i=0;i<length;i++){
         listaOrd.addNode(a[i]);
     }
 }
@@ -53,9 +53,9 @@ void FileManager::GetUserInput(int arr[],int lenght){
     if(input=='i'){
         FileManager::InsertionSort(arr,lenght);
     }
-    //if(input=='s'){
-        //FileManager::SelectionSort(arr,lenght);
-    //}
+    if(input=='s'){
+        FileManager::SelectionSort(arr,lenght);
+    }
     else{
         cout<< "Error"<<endl;
     }
@@ -70,6 +70,33 @@ void FileManager::InsertionSort(int *arr, int length) {
             arr[j] = arr[j-1];
             arr[j-1] = temp;
             j--;
+        }
+    }
+}
+
+void FileManager::SelectionSort(int *arr, int length)
+{
+//pos_min is short for position of min
+    int pos_min,temp;
+
+    for (int i=0; i < length-1; i++)
+    {
+        pos_min = i;//set pos_min to the current index of array
+
+        for (int j=i+1; j < length; j++)
+        {
+
+            if (arr[j] < arr[pos_min])
+                pos_min=j;
+            //pos_min will keep track of the index that min is in, this is needed when a swap happens
+        }
+
+        //if pos_min no longer equals i than a smaller value must have been found, so a swap must occur
+        if (pos_min != i)
+        {
+            temp = arr[i];
+            arr[i] = arr[pos_min];
+            arr[pos_min] = temp;
         }
     }
 }

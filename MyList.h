@@ -12,7 +12,7 @@
 using namespace std;
 
 class MyList {
-private:
+
     typedef struct node{
         int data;
         node* next;
@@ -27,6 +27,7 @@ public:
     MyList();
     int array[];
     void addNode(int addData);
+    void changeData(int index, int value);
     void deleteNode(int delData);
     void PrintList();
     int getLenght();

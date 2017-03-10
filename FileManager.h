@@ -23,10 +23,11 @@ public:
     string getLine();
     void StringCutter(string s);
     void makeArray(int a[],MyList ml);
-    void makeSortedList (int a[]);
-    void InsertionSort(int arr[], int length);
-    //void SelectionSort(int arr[], int length);
+    void makeSortedList (int a[], int lenght);
+    void InsertionSort(int a[], int length);
+    void SelectionSort(int arr[], int length);
     void GetUserInput(int arr[], int length);
+
 
 };
 
