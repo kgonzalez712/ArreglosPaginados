@@ -22,6 +22,6 @@ using namespace std;
 int main() {
 
      PagedArray p("/home/kevin/CLionProjects/ArreglosPaginados/test");
-     cout<<p[3]<<endl;
+     cout<<p[4]<<endl;
     return 0;
 }
