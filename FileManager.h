@@ -27,7 +27,7 @@ public:
     void InsertionSort(int a[], int length);
     void SelectionSort(int arr[], int length);
     void GetUserInput(int arr[], int length);
-
+    void createFile(int arr[],int length);
 
 };
 

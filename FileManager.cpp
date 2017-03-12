@@ -12,7 +12,10 @@ FileManager::FileManager(string txt) {
         FileManager::makeArray(array,lista);
         FileManager::GetUserInput(array,lista.getLenght());
         FileManager::makeSortedList(array,lista.getLenght());
-        listaOrd.PrintList();
+        int sorted_array[listaOrd.getLenght()];
+        FileManager::makeArray(sorted_array,listaOrd);
+        FileManager::createFile(sorted_array,listaOrd.getLenght());
+
     } else cout << "Unable to open file" << endl;
 }
 string FileManager::getLine() {
@@ -57,7 +60,9 @@ void FileManager::GetUserInput(int arr[],int lenght){
         FileManager::SelectionSort(arr,lenght);
     }
     else{
-        cout<< "Error"<<endl;
+        cout<< "Error incorrect input. Please type the corresponding letter: Insertion Sort(i)-Selection Sort(s)"<<endl;
+        cin>>input;
+
     }
 }
 
@@ -99,5 +104,14 @@ void FileManager::SelectionSort(int *arr, int length)
             arr[pos_min] = temp;
         }
     }
+}
+
+void FileManager::createFile(int *arr, int length) {
+    ofstream outputFile;
+    outputFile.open("/home/kevin/CLionProjects/ArreglosPaginados/result.txt");
+    for(int i=0; i<length ; i++){
+        outputFile << to_string(arr[i])+",";
+    }
+
 }
 

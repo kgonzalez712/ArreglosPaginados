@@ -29,6 +29,7 @@ public:
     void addNode(int addData);
     void changeData(int index, int value);
     void deleteNode(int delData);
+    void deleteNodeByIndex(int index);
     void PrintList();
     int getLenght();
     int getNodeData(int x);

@@ -61,16 +61,16 @@ void MyList::PrintList() {
 
 }
 
-int MyList::getLenght(){
-    current=head;
-    int i=0;
-    while(current!=NULL){
+int MyList::getLenght() {
+    int i = 0;
+    current = head;
+    while (current != NULL) {
         i++;
-        current=current->next;
+        current = current->next;
     }
     return i;
-
 }
+
 
 
 int MyList::getNodeData(int x){
@@ -93,6 +93,24 @@ void MyList::changeData(int index, int value) {
         current->next==current;
     }
     current->data=value;
+}
+
+void MyList::deleteNodeByIndex(int index){
+    current=head;
+    temp=head;
+    nodePtr delPtr=NULL;
+    for (int i=0; i!=index;i++){
+        temp=current;
+        current=current->next;
+    }
+    delPtr=current;
+    current=current->next;
+    temp->next=current;
+    if(delPtr == head){
+        head=head->next;
+        temp=NULL;
+    }
+
 }
 
 
