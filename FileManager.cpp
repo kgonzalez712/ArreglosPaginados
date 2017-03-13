@@ -14,7 +14,6 @@ FileManager::FileManager(string txt) {
         FileManager::makeSortedList(array,lista.getLenght());
         int sorted_array[listaOrd.getLenght()];
         FileManager::makeArray(sorted_array,listaOrd);
-        FileManager::createFile(sorted_array,listaOrd.getLenght());
 
     } else cout << "Unable to open file" << endl;
 }
@@ -51,17 +50,20 @@ void FileManager::makeSortedList(int *a, int length) {
 
 void FileManager::GetUserInput(int arr[],int lenght){
     char input;
-    cout<<"Select Sorting Method, please type the corresponding letter: Insertion Sort(i)-Selection Sort(s)"<<endl;
+    cout<<"Select Sorting Method, please type the corresponding letter: Insertion Sort(i)- Selection Sort(s)- QuickSort(q). TYPE HERE ->"<<endl;
     cin>>input;
-    if(input=='i'){
-        FileManager::InsertionSort(arr,lenght);
-    }
-    if(input=='s'){
-        FileManager::SelectionSort(arr,lenght);
-    }
-    else{
-        cout<< "Error incorrect input. Please type the corresponding letter: Insertion Sort(i)-Selection Sort(s)"<<endl;
-        cin>>input;
+    switch (input){
+        case 'i':
+            FileManager::InsertionSort(arr,lenght);
+            break;
+        case 's':
+            FileManager::SelectionSort(arr,lenght);
+            break;
+        case 'q':
+            FileManager::QuickSort(arr,0,lista.getLenght()-1);
+            break;
+        default: cout<<"Incorrect input, select Sorting Method, please type the corresponding letter: Insertion Sort(i)- Selection Sort(s)- QuickSort(q)"<<endl;
+
 
     }
 }
@@ -105,12 +107,59 @@ void FileManager::SelectionSort(int *arr, int length)
         }
     }
 }
+int FileManager::partition(int* a,int l,int u)
+{
+    int v,i,j,temp;
+    v=a[l];
+    i=l;
+    j=u+1;
 
-void FileManager::createFile(int *arr, int length) {
+    do
+    {
+        do
+            i++;
+
+        while(a[i]<v&&i<=u);
+
+        do
+            j--;
+        while(v<a[j]);
+
+        if(i<j)
+        {
+            temp=a[i];
+            a[i]=a[j];
+            a[j]=temp;
+        }
+    }while(i<j);
+
+    a[l]=a[j];
+    a[j]=v;
+
+    return(j);
+}
+
+void FileManager::QuickSort(int *arr, int first, int last) {
+    int j;
+    if(first<last)
+    {
+        j=partition(arr,first,last);
+        QuickSort(arr,first,j-1);
+        QuickSort(arr,j+1,last);
+    }
+}
+
+
+void FileManager::createFile(MyList ml) {
     ofstream outputFile;
     outputFile.open("/home/kevin/CLionProjects/ArreglosPaginados/result.txt");
-    for(int i=0; i<length ; i++){
-        outputFile << to_string(arr[i])+",";
+    for(int i=0; i<ml.getLenght() ; i++){
+        if (i==(ml.getLenght()-1)){
+            outputFile << to_string(ml.getNodeData(i));
+
+        }
+        else outputFile << to_string(ml.getNodeData(i))+",";
+
     }
 
 }

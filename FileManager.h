@@ -26,8 +26,10 @@ public:
     void makeSortedList (int a[], int lenght);
     void InsertionSort(int a[], int length);
     void SelectionSort(int arr[], int length);
+    int partition(int arr[],int first,int last);
+    void QuickSort(int arr[],int first,int last);
     void GetUserInput(int arr[], int length);
-    void createFile(int arr[],int length);
+    void createFile(MyList ml);
 
 };
 

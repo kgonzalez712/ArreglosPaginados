@@ -23,6 +23,8 @@ PagedArray::PagedArray(string s) {
     length=l.getLenght();
     cout<<l.getLenght()<<endl;
     PagedArray::AddNumbers(l);
+    file.createFile(PagedArray::l);
+
 
 
 
