@@ -10,12 +10,16 @@
 #include "MyList.h"
 #include "FileManager.h"
 
-
-
 using namespace std;
+/**
+ * Declaracion de la clase PagedArray
+ */
 class PagedArray {
 
 public:
+    /**
+     * Declaracion de atributos de la clase
+     */
     PagedArray(string s);
     string address;
     MyList l;
@@ -24,6 +28,9 @@ public:
     int Npages;
     int Nnumbers;
     int length;
+    /**
+     * Declaracion de metodos de la clase
+     */
     int operator [](int num);
     int allocate(int* memory, int* page, int index);
     void AddNumbers(MyList l);

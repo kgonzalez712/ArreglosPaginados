@@ -10,9 +10,13 @@
 #include<iostream>
 
 using namespace std;
-
+/**
+ * Declaracion de la clase MyList
+ */
 class MyList {
-
+/**
+ * Declaracion del struct node
+ */
     typedef struct node{
         int data;
         node* next;
@@ -24,8 +28,10 @@ class MyList {
     nodePtr temp;
 
 public:
+    /**
+ * Declaracion de metodos de la clase
+ */
     MyList();
-    int array[];
     void addNode(int addData);
     void changeData(int index, int value);
     void deleteNode(int delData);

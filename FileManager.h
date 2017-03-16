@@ -13,12 +13,20 @@
 
 using namespace std;
 
-
+/**
+ * Declaracion de la clase FileManager
+ */
 class FileManager {
 public:
+    /**
+     * Declaracion de atributos de la clase
+     */
     string line;
     MyList lista;
     MyList listaOrd;
+    /**
+     * DEclaracion de metodos de la clase
+     */
     FileManager(string txt);
     string getLine();
     void StringCutter(string s);

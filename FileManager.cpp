@@ -2,6 +2,10 @@
 // Created by kevin on 09/03/17.
 //
 #include "FileManager.h"
+/**
+ * Constructor de la clase FileManager
+ * @param txt Recibe fichero de texto
+ */
 FileManager::FileManager(string txt) {
     ifstream myfile(txt);
     if (myfile.is_open()) {
@@ -17,9 +21,18 @@ FileManager::FileManager(string txt) {
 
     } else cout << "Unable to open file" << endl;
 }
+/**
+ * Obtiene la linea de texto
+ * @return Linea de texto
+ */
 string FileManager::getLine() {
     return line;
 }
+/**
+ * Este metodo se encarga de leer el string y cortarlo cada vez que aparezca una coma (,)
+ *
+ * @param s String de texto
+ */
 void FileManager::StringCutter(string s) {
     string temp="";
     int i=0;
@@ -37,17 +50,31 @@ void FileManager::StringCutter(string s) {
     lista.addNode(stoi(temp));
 }
 
+/**
+ * Este metodo recibe un Array vacio y una lista enlazada y crea un array donde se guardaran los numeros
+ * @param a Array vacio donde se van a insertar los numeros
+ * @param ml Lista enlazada
+ */
 void FileManager::makeArray(int *a, MyList ml) {
     for (int i=0; i<ml.getLenght();i++){
         a[i]= lista.getNodeData(i);
     }
 }
+/**
+ * Este metodo recibe un Array vacio y un largo y crea una lista ordenada con los numeros
+ * @param a
+ * @param length
+ */
 void FileManager::makeSortedList(int *a, int length) {
     for (int i=0;i<length;i++){
         listaOrd.addNode(a[i]);
     }
 }
-
+/**
+ * Este metodo se encarga de realizar el ordenamiento segun el input del usuario, recibe un array con los numeros del texto y el largo del array
+ * @param arr los numeros del texto
+ * @param lenght largo del array
+ */
 void FileManager::GetUserInput(int arr[],int lenght){
     char input;
     cout<<"Select Sorting Method, please type the corresponding letter: Insertion Sort(i)- Selection Sort(s)- QuickSort(q). TYPE HERE ->"<<endl;
@@ -67,7 +94,11 @@ void FileManager::GetUserInput(int arr[],int lenght){
 
     }
 }
-
+/**
+ * Este metodo ordena el arreglo utilizando insertion sort
+ * @param arr
+ * @param length
+ */
 void FileManager::InsertionSort(int *arr, int length) {
     int j, temp;
     for (int i = 0; i < length; i++){
@@ -81,24 +112,23 @@ void FileManager::InsertionSort(int *arr, int length) {
     }
 }
 
+/**
+ * Este metodo ordena el arreglo utilizando Selection sort
+ * @param arr
+ * @param length
+ */
 void FileManager::SelectionSort(int *arr, int length)
 {
-//pos_min is short for position of min
     int pos_min,temp;
 
     for (int i=0; i < length-1; i++)
     {
-        pos_min = i;//set pos_min to the current index of array
-
+        pos_min = i;
         for (int j=i+1; j < length; j++)
         {
-
             if (arr[j] < arr[pos_min])
                 pos_min=j;
-            //pos_min will keep track of the index that min is in, this is needed when a swap happens
         }
-
-        //if pos_min no longer equals i than a smaller value must have been found, so a swap must occur
         if (pos_min != i)
         {
             temp = arr[i];
@@ -107,13 +137,19 @@ void FileManager::SelectionSort(int *arr, int length)
         }
     }
 }
+/**
+ * Este metodo se encarga de realizar la particion del array para realizar el metodo quicksort
+ * @param a
+ * @param l
+ * @param u
+ * @return
+ */
 int FileManager::partition(int* a,int l,int u)
 {
     int v,i,j,temp;
     v=a[l];
     i=l;
     j=u+1;
-
     do
     {
         do
@@ -138,7 +174,12 @@ int FileManager::partition(int* a,int l,int u)
 
     return(j);
 }
-
+/**
+ * Este metodo ordena el arreglo utilizando  Quick sort
+ * @param arr
+ * @param first
+ * @param last
+ */
 void FileManager::QuickSort(int *arr, int first, int last) {
     int j;
     if(first<last)
@@ -149,7 +190,10 @@ void FileManager::QuickSort(int *arr, int first, int last) {
     }
 }
 
-
+/**
+ * Este metodo recibe una lista y crea el archivo de salidad con los numeros ordenados
+ * @param ml
+ */
 void FileManager::createFile(MyList ml) {
     ofstream outputFile;
     outputFile.open("/home/kevin/CLionProjects/ArreglosPaginados/result.txt");
